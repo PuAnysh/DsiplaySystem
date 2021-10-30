@@ -1,0 +1,16 @@
+{
+  "name": "electron.js-login-main",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^15.3.0",
+    "electron-fetch": "^1.7.4"
+  }
+}

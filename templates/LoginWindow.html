@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>请输入信息</title>
+</head>
+<body style="-webkit-app-region: drag">
+   
+    <button class="closeBtn" id="closeBtn">X</button>
+    <div class="login-content">
+        <div class="logo">
+            <img src="./img/logo.png" alt="" srcset="">
+        </div>
+        <form action="" onsubmit="return false">
+            <div class="form-item">
+                <input id="ip" placeholder="Host Address">
+            </div>
+            <div class="form-item">
+                <input id="port" placeholder="Port">
+            </div>
+            <div class="form-item">
+                <button class="loginBtn" id="loginBtn">Login</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+<script src="./LoginWindow.js"></script>
+
+</html>
+
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;900&display=swap");
+    @import url("https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap");
+    * {
+    padding: 0px;
+    margin: 0;
+    list-style: none;
+    border: none;
+    text-decoration: none;
+    outline: 0;
+    box-sizing: border-box;
+    -webkit-overflow-scrolling: touch;
+    font-family: "Mulish",sans-serif;
+    color: white;
+    }   
+    body{
+        padding: 0 20px;
+        display: flex;
+        background: #18191a;
+        justify-content: center;
+        height: 100vh;
+        align-items: center;
+        
+    }
+    .login-content{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .login-content .form-item{
+        margin-bottom: 10px;
+    }
+    .login-content .logo{
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 50px;
+    }
+    .login-content .logo img{
+        height: auto;
+        width: 150px; 
+    }
+    .login-content .form-item:last-child{
+        margin-bottom: 0;
+    }
+    input{
+        -webkit-app-region: no-drag;
+        background: #202123;
+        height: 50px;
+        width: 100%;
+        padding: 0 20px;
+        border: 2px solid #141416;
+    }
+    input:focus{
+        border: 2px solid #030303;
+    }
+    button{
+        -webkit-app-region: no-drag;
+    }
+    .loginBtn{
+        width: 100%;
+        background: #2d88ff;
+        color: white;
+        height: 50px;
+        transition: 100ms background linear;
+    }
+    .loginBtn:hover{
+        background: #1077fd;
+    }
+
+    .closeBtn{
+        background: transparent;
+        color: white;
+        font-weight: bolder;
+        font-size: 24px;
+        display: flex;
+        position: absolute;
+        top: 5px;
+        right: 10px;
+    }
+
+</style>

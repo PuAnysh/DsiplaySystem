@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>航拍图像检测器演示系统</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;900&display=swap");
+        @import url("https://fonts.googleapis.com/css2?family=Courier+Prime&display=swap");
+        * {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+        border: none;
+        text-decoration: none;
+        box-sizing: border-box;
+        -webkit-overflow-scrolling: touch;
+        font-family: "Mulish",sans-serif;
+        }   
+        body{
+            height: 100vh;
+            background: #18191a;
+        }
+        .header{
+            width: 100%;
+            height: 80px;
+            background: #18191a; 
+            border-bottom: 1px solid #393a3b;      
+        }
+        .header .header-inside{
+            display: flex;
+            height: 100%;
+            align-items: center;
+            padding-left: 20px;
+            padding-right: 20px;
+            justify-content: space-between;
+        }
+        .header .header-inside .logo{
+            display: flex;
+            height: 100%;
+            align-items: center;
+        }
+        .header .header-inside h2{
+            color: white;
+            font-weight: bold;
+        }
+        button{
+            -webkit-app-region: no-drag;
+        }
+        label{
+            -webkit-app-region: no-drag;
+        }
+        input{
+            -webkit-app-region: no-drag;
+        }
+        .header .header-inside .btn{
+            padding: 20px;
+            padding-left: 25px;
+            padding-right: 25px;
+            background: #2a3979;
+            color: white;
+            font-size: 17px;
+            font-weight: bolder;
+            border-radius: 8px;
+            transition: 500ms background;
+            -webkit-app-region: no-drag;
+        }
+        .header .header-inside .btn:hover{
+            background: #222d61;
+        }
+        .header .logo img{
+            height: 60px;
+            width: auto;
+        }
+        .content{
+            height: 90%;
+            padding: 15px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .item{
+            width: calc(100% / 3 - 10px);
+            height: 200px;
+            display: flex;
+            background: white;
+            box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 1;
+            border:0;
+            outline:none;
+            border-radius: 9px !important;
+            margin-right: 10px;
+        }
+        .item:last-child{
+            margin-right: 0px;
+        }
+        .item:hover{
+            outline:none;
+        }
+        .item:focus{
+            border: 0;
+            outline:none;
+        }
+    
+        .item img{
+            display: block;
+            object-fit: cover;
+            object-position: top;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: 8;
+            opacity: 1;
+            transition: .35s;
+            border-radius: 8px !important;
+        }
+        .item .item-text{
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            z-index: 20;
+            padding: 35px;
+            width: 100%;
+            height: 100%;
+            background-color: #14141473;
+            background-image: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.651));
+            border-radius: 5px;
+            transition: all 500ms;
+        }
+        .item-text:hover{
+            background-color: #1414143d;
+            background-image: linear-gradient(to bottom, transparent, transparent);
+        }
+        .item .item-title {
+            color: #fff;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        body {
+            overflow-y: hidden;
+        }
+        .content #map{
+            width: 100%;
+            height: 85%;
+            z-index: 55;
+            -webkit-app-region: no-drag;
+        }
+        #notification {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 500;
+            width: 200px;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body style="-webkit-app-region: drag">
+    <div class="header">
+        <div class="header-inside" >
+            <!-- <div class="logo">
+                <img src="https://crew.istanbulvirtual.com/public/assets/images/circle-logo.png" alt="" srcset="">
+            </div> -->
+            <h2 style="display: flex; align-items: center;"> 
+                航拍图像检测器演示系统 <p style="margin-left: 5px; font-size: 15px; font-weight: bolder;" id="version"></p>
+            </h2>
+            <h5 style="color: #e00000;">
+                黄烨铖SY1906904
+            </h5>
+            <div class="menu">
+                <button class="btn" id="closeBtn">
+                    EXIT
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <button id="checklist737" class="item">
+            <div class="item-text">
+                <h5 class="item-title">B737 Checklist</h5>
+            </div>
+        </button>
+        <button id="checklist320" class="item">
+            <div class="item-text">
+                <h5 class="item-title">A320 Checklist</h5>
+            </div>
+        </button>
+        <button id="checklist777" class="item">
+            <div class="item-text">
+                <h5 class="item-title">B777 Checklist</h5>
+            </div>
+        </button>
+        <!-- <input hidden id="downloaditem" webkitdirectory directory type="file">  -->
+    </div>
+    <style>
+        #notification .btn{
+            padding: 5px;
+            padding-left: 10px;
+            padding-right: 10px;
+            background: #2a3979;
+            color: white;
+            font-size: 12px;
+            font-weight: bolder;
+            border-radius: 8px;
+            transition: 500ms background;
+            -webkit-app-region: no-drag;
+        }
+        #notification .btn:hover{
+            background: #222d61;
+        }
+    </style>
+
+    <script src="./mainWindow.js"></script>
+</body>
+</html>
