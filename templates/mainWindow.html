@@ -80,8 +80,8 @@
             flex-wrap: wrap;
         }
         .item{
-            width: calc(100% / 3 - 10px);
-            height: 200px;
+            width: 100px;
+            height: 50px;
             display: flex;
             background: white;
             box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.2);
@@ -120,7 +120,7 @@
             flex-direction: column;
             justify-content: flex-end;
             z-index: 20;
-            padding: 35px;
+            padding: 15px;
             width: 100%;
             height: 100%;
             background-color: #14141473;
@@ -134,8 +134,8 @@
         }
         .item .item-title {
             color: #fff;
-            font-size: 28px;
-            font-weight: 700;
+            font-size: 16px;
+            /* font-weight: 700; */
         }
         body {
             overflow-y: hidden;
@@ -182,21 +182,67 @@
         </div>
     </div>
     <div class="content">
-        <button id="checklist737" class="item">
-            <div class="item-text">
-                <h5 class="item-title">B737 Checklist</h5>
-            </div>
-        </button>
-        <button id="checklist320" class="item">
-            <div class="item-text">
-                <h5 class="item-title">A320 Checklist</h5>
-            </div>
-        </button>
-        <button id="checklist777" class="item">
-            <div class="item-text">
-                <h5 class="item-title">B777 Checklist</h5>
-            </div>
-        </button>
+        <!-- <div class="content" style="display:none">
+            <input type="file" name="title" id="open">
+        </div>> -->
+            
+        <div id="menu" style="float:right;">
+            <button id="open_file" class="item">
+                <div class="item-text">
+                    <!-- <input type="file"> -->
+                    <h5 class="item-title">上传图片</h5>
+                </div>
+            </button>
+            <button id="fpn1" class="item">
+                <div class="item-text">
+                    <!-- <input type="file"> -->
+                    <h5 class="item-title">FPN1</h5>
+                </div>
+            </button>
+            <button id="fpn2" class="item">
+                <div class="item-text">
+                    <!-- <input type="file"> -->
+                    <h5 class="item-title">FPN2</h5>
+                </div>
+            </button>
+            <button id="fpn3" class="item">
+                <div class="item-text">
+                    <!-- <input type="file"> -->
+                    <h5 class="item-title">FPN3</h5>
+                </div>
+            </button>
+            <button id="fpn4" class="item">
+                <div class="item-text">
+                    <!-- <input type="file"> -->
+                    <h5 class="item-title">FPN4</h5>
+                </div>
+            </button>
+            <button id="fpn5" class="item">
+                <div class="item-text">
+                    <!-- <input type="file"> -->
+                    <h5 class="item-title">FPN5</h5>
+                </div>
+            </button>
+            <button id="original" class="item">
+                <div class="item-text">
+                    <!-- <input type="file"> -->
+                    <h5 class="item-title">原图</h5>
+                </div>
+            </button>
+            <!-- <button id="checklist320" class="item">
+                <div class="item-text">
+                    <h5 class="item-title">A320 Checklist</h5>
+                </div>
+            </button>
+            <button id="checklist777" class="item">
+                <div class="item-text">
+                    <h5 class="item-title">B777 Checklist</h5>
+                </div>
+            </button> -->
+        </div>
+        <div>
+            <img loading="lazy" id="display" src="./img/logo.png" alt="文本描述信息" width="1024" height="540" >
+        </div>>
         <!-- <input hidden id="downloaditem" webkitdirectory directory type="file">  -->
     </div>
     <style>

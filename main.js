@@ -3,8 +3,10 @@ const url = require("url")
 const path = require("path")
 const { dirname } = require("path")
 const fetch = require('electron-fetch').default
-
+const { windowsStore } = require('process')
 const { app, BrowserWindow, Menu, ipcMain, remote } = electron;
+const {dialog} = require('electron')
+// const {dialog} = require('electron').remote;
 
 let loginWindow, mainWindow;
 var ip, port
@@ -49,7 +51,27 @@ app.on("ready", ()=> {
         
     })
 
+    ipcMain.on("logMsg", (err,data)=> {
+        OpenDialog()
+        console.log(data)
+    })
+
 })
+
+function OpenDialog()
+{
+    dialog.showOpenDialog({
+        title: "请选择您喜欢的文件",
+        filters: [
+            { name: 'Custom File Type', extensions: ['jpg', 'png'] },
+          ]
+    }).then(result => {
+        console.log(result.canceled)
+        console.log(result.filePaths)
+      }).catch(err => {
+        console.log(err)
+      })
+}
 
 async function login(data){
     let statususer
@@ -79,12 +101,15 @@ function CreateWindow(data){
     port = data.port
     mainWindow = new BrowserWindow({
         frame: true,
+        height: 700,
+        width: 1200,
         webPreferences: {
             contextIsolation: true,
             enableRemoteModule: false, 
             preload: path.join(__dirname, 'preload.js')
         }
     });
+    // mainWindow.webContents.openDevTools();
 
     mainWindow.setResizable(false)
 
@@ -95,6 +120,9 @@ function CreateWindow(data){
             slashes: true
         })
     );
+    mainWindow.once('ready-to-show', () => {
+        mainWindow.show() //to prevent the white screen when loading the window, lets show it when it is ready
+    })
 
     mainWindow.on("close", () => {
         mainWindow = null;
