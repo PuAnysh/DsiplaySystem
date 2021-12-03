@@ -182,6 +182,10 @@
         </div>
     </div>
     <div class="content">
+        <form method="get" action=" http://10.212.67.40:5000/download" enctype="multipart/form-data" style="display:none">
+            <input type="text" name="name" value="" id = "img_id"/>
+            <input type="submit" value="提交信息"  id = "down" class="button-new" />
+        </form>
         <!-- <div class="content" style="display:none">
             <input type="file" name="title" id="open">
         </div>> -->
@@ -274,7 +278,14 @@
             background: #222d61;
         }
     </style>
-
+    <form method="post" action="http://10.212.67.40:5000/uploader" enctype="multipart/form-data" style="visibility:hidden"  target="iframeForm">
+        <input type="file" size="30" name="file" id="selectImg"/>
+        <!-- <br> -->
+        <!-- <input type="text" class="txt_input" name="name" style="margin-top:15px;"/> -->
+        <input type="submit" value="提交信息" class="button-new" id="submit"/>
+    </form>
+    
+    <iframe id="iframeForm" name="iframeForm" style="display:none;"></iframe> 
     <script src="./mainWindow.js"></script>
 </body>
 </html>

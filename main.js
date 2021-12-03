@@ -1,11 +1,13 @@
 const electron = require('electron')
 const url = require("url")
 const path = require("path")
+const fs = require('fs');
 const { dirname } = require("path")
 const fetch = require('electron-fetch').default
 const { windowsStore } = require('process')
 const { app, BrowserWindow, Menu, ipcMain, remote } = electron;
 const {dialog} = require('electron')
+
 // const {dialog} = require('electron').remote;
 
 let loginWindow, mainWindow;
@@ -56,6 +58,15 @@ app.on("ready", ()=> {
         console.log(data)
     })
 
+    
+
+    ipcMain.on("flash", (err)=> {
+        Flash().catch(err => {
+            console.log(err)
+          })
+        console.log()
+    })
+
 })
 
 function OpenDialog()
@@ -95,6 +106,41 @@ async function login(data){
 
 }
 
+async function Flash(){
+    var src = path.join(app.getAppPath(), 'templates/img/logo.png');
+    var dest = path.join(app.getAppPath(), 'templates/img/fpn_0.png');
+    fs.copyFile(src, dest, (err) => { 
+        if (err) { 
+          console.log("Error Found:", err); 
+        }
+      }); 
+    var dest = path.join(app.getAppPath(), 'templates/img/fpn_1.png');
+    fs.copyFile(src, dest, (err) => { 
+        if (err) { 
+        console.log("Error Found:", err); 
+        }
+    }); 
+    var dest = path.join(app.getAppPath(), 'templates/img/fpn_2.png');
+    fs.copyFile(src, dest, (err) => { 
+        if (err) { 
+        console.log("Error Found:", err); 
+        }
+    }); 
+    var dest = path.join(app.getAppPath(), 'templates/img/fpn_3.png');
+    fs.copyFile(src, dest, (err) => { 
+        if (err) { 
+        console.log("Error Found:", err); 
+        }
+    }); 
+    var dest = path.join(app.getAppPath(), 'templates/img/fpn_4.png');
+    fs.copyFile(src, dest, (err) => { 
+        if (err) { 
+        console.log("Error Found:", err); 
+        }
+    }); 
+}
+
+
 
 function CreateWindow(data){
     ip = data.ip
@@ -110,7 +156,14 @@ function CreateWindow(data){
         }
     });
     // mainWindow.webContents.openDevTools();
-
+    //const path = require('path')
+    mainWindow.webContents.session.on('will-download', (event, item, webContents) => {
+        const filePath = path.join(app.getAppPath(), 'templates/img', item.getFilename());
+        console.log(filePath)
+        item.setSavePath(filePath);
+        //...
+    })
+    
     mainWindow.setResizable(false)
 
     mainWindow.loadURL(
