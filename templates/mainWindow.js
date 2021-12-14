@@ -12,7 +12,7 @@ var down = document.querySelector("#down")
 var img_id = document.querySelector("#img_id")
 
 
-var original_src, fpn1,fpn2,fpn3,fpn4,fpn5
+var original_src,gt_src, fpn1,fpn2,fpn3,fpn4,fpn5
 
 function sleep (time) {
     return new Promise((resolve) => setTimeout(resolve, time));
@@ -45,6 +45,9 @@ selectImg.addEventListener('change', e => {
     entry = e.target.files[0]
     document.querySelector('#display').src=entry.path
     original_src = entry.path
+    gt_src = 'D:\\dataset\\VisDrone2019-DET-val-gt\\' + original_src.split('\\')[4]
+    console.log(original_src)
+    console.log(original_src.split('\\'))
     submit.click()
     }
     
@@ -126,4 +129,9 @@ document.querySelector("#ufpmp-det").addEventListener("click", ()=> {
 document.querySelector("#original").addEventListener("click", ()=> {
     
     document.querySelector('#display').src = original_src
+})
+
+document.querySelector("#gt").addEventListener("click", ()=> {
+    
+    document.querySelector('#display').src = gt_src
 })
