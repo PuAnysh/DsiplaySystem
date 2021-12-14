@@ -147,8 +147,8 @@ function CreateWindow(data){
     port = data.port
     mainWindow = new BrowserWindow({
         frame: true,
-        height: 700,
-        width: 1200,
+        height: 1300,
+        width: 2000,
         webPreferences: {
             contextIsolation: true,
             enableRemoteModule: false, 

@@ -102,6 +102,27 @@ document.querySelector("#fpn5").addEventListener("click", ()=> {
     document.querySelector('#display').src = "./img/fpn_4.png?"+Math.random()
     
 })
+document.querySelector("#predict").addEventListener("click", ()=> {
+    a.href = "http://10.212.67.40:5000/download?name=dynamic_result.png"
+    a.click();
+    sleep(300);
+    document.querySelector('#display').src = "./img/dynamic_result.png?"+Math.random()
+    
+})
+document.querySelector("#ufp").addEventListener("click", ()=> {
+    a.href = "http://10.212.67.40:5000/download?name=ufp.png"
+    a.click();
+    sleep(300);
+    document.querySelector('#display').src = "./img/ufp.png?"+Math.random()
+    
+})
+document.querySelector("#ufpmp-det").addEventListener("click", ()=> {
+    a.href = "http://10.212.67.40:5000/download?name=ufpmp_result.png"
+    a.click();
+    sleep(300);
+    document.querySelector('#display').src = "./img/ufpmp_result.png?"+Math.random()
+    
+})
 document.querySelector("#original").addEventListener("click", ()=> {
     
     document.querySelector('#display').src = original_src
